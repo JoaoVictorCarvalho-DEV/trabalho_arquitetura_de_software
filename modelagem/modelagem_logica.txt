@@ -1,0 +1,50 @@
+TABELA: USUARIO
+- id (PK)
+- nome
+- email (UNIQUE)
+- senha
+- data_criacao
+
+TABELA: DISPOSITIVO
+- id (PK)
+- nome
+- identificador_unico (UNIQUE)
+- token (UNIQUE)
+- status
+- usuario_id (FK)
+
+TABELA: TELEMETRIA
+- id (PK)
+- corrente
+- potencia
+- estado
+- timestamp
+- dispositivo_id (FK)
+
+TABELA: EVENTO
+- id (PK)
+- tipo_evento
+- descricao
+- timestamp
+- dispositivo_id (FK)
+
+TABELA: COMANDO
+- id (PK)
+- tipo
+- status
+- timestamp_envio
+- timestamp_execucao
+- dispositivo_id (FK)
+
+TABELA: AGENDAMENTO
+- id (PK)
+- tipo_comando
+- data_hora_execucao
+- dispositivo_id (FK)
+
+TABELA: NOTIFICACAO
+- id (PK)
+- mensagem
+- tipo
+- timestamp
+- dispositivo_id (FK)
