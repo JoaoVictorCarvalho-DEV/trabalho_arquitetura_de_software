@@ -1,0 +1,63 @@
+CREATE TABLE usuario (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    senha TEXT NOT NULL,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE dispositivo (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    identificador_unico VARCHAR(100) UNIQUE NOT NULL,
+    token TEXT UNIQUE NOT NULL,
+    status BOOLEAN DEFAULT TRUE,
+    usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+);
+
+CREATE TABLE telemetria (
+    id SERIAL PRIMARY KEY,
+    corrente DECIMAL(10,2),
+    potencia DECIMAL(10,2),
+    estado VARCHAR(50),
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    dispositivo_id INT NOT NULL,
+    FOREIGN KEY (dispositivo_id) REFERENCES dispositivo(id)
+);
+
+CREATE TABLE evento (
+    id SERIAL PRIMARY KEY,
+    tipo_evento VARCHAR(100),
+    descricao TEXT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    dispositivo_id INT NOT NULL,
+    FOREIGN KEY (dispositivo_id) REFERENCES dispositivo(id)
+);
+
+CREATE TABLE comando (
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(50),
+    status VARCHAR(50),
+    timestamp_envio TIMESTAMP,
+    timestamp_execucao TIMESTAMP,
+    dispositivo_id INT NOT NULL,
+    FOREIGN KEY (dispositivo_id) REFERENCES dispositivo(id)
+);
+
+CREATE TABLE agendamento (
+    id SERIAL PRIMARY KEY,
+    tipo_comando VARCHAR(50),
+    data_hora_execucao TIMESTAMP,
+    dispositivo_id INT NOT NULL,
+    FOREIGN KEY (dispositivo_id) REFERENCES dispositivo(id)
+);
+
+CREATE TABLE notificacao (
+    id SERIAL PRIMARY KEY,
+    mensagem TEXT,
+    tipo VARCHAR(50),
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    dispositivo_id INT NOT NULL,
+    FOREIGN KEY (dispositivo_id) REFERENCES dispositivo(id)
+);
