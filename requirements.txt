@@ -1,0 +1,18 @@
+====================================================================
+PLANO DE IMPLANTAÇÃO, TESTES E REGRAS DE NEGÓCIO (RN)
+====================================================================
+
+[REGRAS DE NEGÓCIO - RN]
+- RN001: Um dispositivo IoT não pode aceitar comandos sem um cabeçalho HTTP contendo o Bearer Token correspondente.
+- RN002: Notificações de estouro de limite de carga só devem ser disparadas se a potência lida exceder o valor estipulado por 3 coletas consecutivas (evita falsos positivos).
+- RN003: O histórico de telemetria bruto é imutável após a gravação.
+
+[POLÍTICAS DE TESTE E QUALIDADE (PRODUTO)]
+- Testes Unitários: Implementados via PyTest para checar as funções matemáticas de cálculo de kWh por período.
+- Testes de Integração: Validação do fluxo completo: Envio de Mock de Telemetria -> Resposta da API -> Gravação em DB.
+- Testes de Carga: Simulação via Locust de 500 requisições simultâneas de sensores concorrentes (Garantia do RNF002).
+
+[PROCESSO DE IMPLANTAÇÃO]
+- Homologação: Validação local em ambiente isolado (Staging) espelhando os parâmetros de produção.
+- Instalação: Deploy automatizado via containerização (Docker) e publicação em nuvem Cloud PaaS (Render / Vercel).
+- Treinamento: Fornecimento de documentação técnica em formato OpenAPI (Swagger) no próprio repositório.

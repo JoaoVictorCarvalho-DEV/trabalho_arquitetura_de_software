@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Power Controller - Protótipo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">⚡ SmartPower</div>
+        <ul class="nav-links">
+            <li><a href="#dashboard" class="active">Dashboard</a></li>
+            <li><a href="#cadastro">Cadastrar Device</a></li>
+            <li><a href="#relatorio">Relatórios</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="card shadow">
+            <h2>Monitoramento em Tempo Real (RF002)</h2>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <span>Estado Atual</span>
+                    <strong id="statusLabel" class="txt-success">LIGADO</strong>
+                </div>
+                <div class="metric-box">
+                    <span>Consumo Estimado</span>
+                    <strong>14.2 kWh</strong>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button id="toggleBtn" class="btn btn-primary">Inverter Estado (Comando Remoto)</button>
+            </div>
+        </section>
+
+        <div id="dialogBox" class="dialog hidden">
+            <div class="dialog-content">
+                <h3>⚠️ Alerta do Sistema</h3>
+                <p>Comando enviado com sucesso para o hardware remoto através do gateway cloud.</p>
+                <button id="closeDialog" class="btn btn-secondary">Fechar</button>
+            </div>
+        </div>
+
+        <section class="card shadow separator">
+            <h2>Layout do Relatório de Consumo (Faturamento/Métricas)</h2>
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Identificador</th>
+                        <th>Aparelho</th>
+                        <th>Tempo Ativo</th>
+                        <th>Total Consumido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#IOT-ESP32-01</td>
+                        <td>Ar Condicionado Labs</td>
+                        <td>120 horas</td>
+                        <td>84.50 kWh</td>
+                    </tr>
+                    <tr>
+                        <td>#IOT-ESP32-02</td>
+                        <td>Servidores TI</td>
+                        <td>720 horas</td>
+                        <td>312.10 kWh</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

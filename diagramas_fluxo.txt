@@ -1,0 +1,14 @@
+====================================================================
+ESPECIFICAÇÃO DE FLUXO DE SISTEMAS (MÉTODO ESTRUTURADO)
+====================================================================
+
+1. DIAGRAMA DE CONTEXTO (NÍVEL SUPERIOR)
+   [Entidade Externa: Usuário]   --> Solicita cadastro / Envia comando remotos --> [ Sistema Smart Power Controller ]
+   [Entidade Externa: Dispositivo IoT] --> Transmite telemetria de corrente e potência --> [ Sistema Smart Power Controller ]
+   [ Sistema Smart Power Controller ]  --> Emite alertas e relatórios analíticos --> [Entidade Externa: Usuário]
+
+2. DFD NÍVEL ZERO (PROCESSOS PRINCIPAIS)
+   - Processo 1.0: Autenticar e Gerenciar Contas de Usuários
+   - Processo 2.0: Processar Ingestão de Telemetria IoT (Valida Token -> Calcula Consumo -> Salva no Banco)
+   - Processo 3.0: Processar Agendamento e Despacho de Comandos Remotos
+   - Processo 4.0: Engine de Notificações Ativas (Monitora picos e quebras de limite)
